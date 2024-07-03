@@ -5,22 +5,24 @@ urlpatterns = [
    path('', home, name="home"),
     path('ilost/', ilost, name="ilost"),
     path('ifound/', ifound, name="ifound"),
-    #fomularios
+   #fomularios
      path('lostForm/', lostForm, name="lostForm"), # URL para el formulario de perdido
                                                     # URL para la vista de detalle del ítem perdido
     path('foundForm/', foundForm, name="foundForm"), # URL para el formulario de encontrado
     path('found/<int:pk>/', foundDetail, name='found_detail'),# URL para la vista de detalle del ítem encontrado
     
-    #buscar
+   #buscar
     path('buscarItem/', buscarItem, name="buscarItem"),
     path('encontrarItem/', encontrarItem, name="encontrarItem"),
     
-    #Acerca de mi
+   #Acerca de mi
     path('aboutme/', aboutme, name= "aboutme"),
    
+   #Testimonios
+    path('testimonial_create/', testimonial_create, name='testimonial_create'),
+    path('gracias/', gracias, name='gracias'),
     
     
-    
-    path('leerFound', leerFound, name = "LeerFound"),
+   
     ]
 

@@ -100,12 +100,16 @@ def encontrarItem(request):
     contexto = {'found': found}
     return render(request, "busqueda/found.html", contexto)
 
-#leer found items (q hay almacenado para devolver)
+def testimonial_create(request):
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('gracias')  # Redirige a una página de agradecimiento
+    else:
+        form = TestimonialForm()
 
-def leerFound(request):
+    return render(request, 'busqueda/testimonial_form.html', {'form': form})
 
-      encontrados = Ifound.objects.all() #trae todos los encontrados
-
-      contexto= {"founds":encontrados} 
-
-      return render(request, "busqueda/leerFound.html",contexto)
+def gracias(request):
+    return render(request, 'busqueda/gracias.html')

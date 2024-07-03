@@ -10,7 +10,7 @@ def validate_past_date(value):
             _('La fecha no puede estar en el futuro.')
         )
 
-# Create your models here.
+#Modelo Ilost(objeto perdido)
 class Ilost(models.Model):
     when = models.DateField(validators=[validate_past_date])
     what = models.CharField(max_length=60)
@@ -31,9 +31,9 @@ class Ilost(models.Model):
 
 
 
-
+#Modelo IFound(obejto encontrado)
 class Ifound(models.Model):
-    when = models.DateField(max_length=60)
+    when = models.DateField(validators=[validate_past_date])
     what = models.CharField(max_length=60)
     where = models.CharField(max_length=60)
     color = models.CharField(max_length=50)
@@ -49,3 +49,14 @@ class Ifound(models.Model):
         verbose_name = "Found Property"
         verbose_name_plural = "Found Properties"
         ordering = ["when", "what"]
+
+#Modelo Testimonials (Reseña de los huspedes que usaron el servicio)
+
+class Testimonial(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    ciudad = models.CharField(max_length=100)
+    testimonio = models.CharField(max_length=900)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido} - {self.ciudad}"

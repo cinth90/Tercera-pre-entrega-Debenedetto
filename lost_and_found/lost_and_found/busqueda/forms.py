@@ -1,4 +1,5 @@
-from django import forms 
+from django import forms
+from .models import *
 
 class LostForm(forms.Form):
     when = forms.CharField(max_length=60)
@@ -16,3 +17,7 @@ class FoundForm(forms.Form):
     model = forms.CharField(max_length=60, required=False)
     size = forms.CharField(max_length=60, required=False)
 
+class TestimonialForm(forms.ModelForm):
+    class Meta:
+        model = Testimonial
+        fields = ['nombre', 'apellido', 'ciudad', 'testimonio']
