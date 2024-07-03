@@ -79,9 +79,9 @@ def buscarItem(request):
 
 def encontrarItem(request):
     if 'buscar' in request.GET:
-        patron = request.GET['buscar'].strip()  # Get the search query
+        patron = request.GET['buscar'].strip()
         if patron:
-            # Perform case-insensitive partial matches on different fields
+            
             queryset = (
                 Ifound.objects.filter(what__icontains=patron)
                 | Ifound.objects.filter(where__icontains=patron)
@@ -89,14 +89,14 @@ def encontrarItem(request):
                 | Ifound.objects.filter(color__icontains=patron)
                 | Ifound.objects.filter(model__icontains=patron)
                 | Ifound.objects.filter(size__icontains=patron)
-            ).distinct()  # Ensure distinct results
+            ).distinct()
             
-            found = list(queryset)  # Convert queryset to list for iteration
+            found = list(queryset)
         else:
-            found = Ifound.objects.all()  # Fetch all items if no search query provided
+            found = Ifound.objects.all()
     else:
-        found = Ifound.objects.all()  # Fetch all items if no 'buscar' parameter
-    
+        found = Ifound.objects.all()
+            
     contexto = {'found': found}
     return render(request, "busqueda/found.html", contexto)
 

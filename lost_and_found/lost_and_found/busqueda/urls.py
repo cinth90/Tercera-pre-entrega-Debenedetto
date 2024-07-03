@@ -21,8 +21,7 @@ urlpatterns = [
    #Testimonios
     path('testimonial_create/', testimonial_create, name='testimonial_create'),
     path('gracias/', gracias, name='gracias'),
-    
-    
+   
    
     ]
 
