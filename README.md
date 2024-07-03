@@ -39,4 +39,4 @@ Una vez instalado el proyecto:
 Autor
 
     Autor: Cinthia Debenedetto
-    Contacto: [Tu Correo Electrónico]
+    Contacto: cin_ana@hotmail.com
