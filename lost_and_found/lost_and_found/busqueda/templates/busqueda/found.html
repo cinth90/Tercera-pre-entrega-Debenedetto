@@ -1,0 +1,29 @@
+{% extends "busqueda/index.html" %}
+
+
+{% block titulo %}
+<h1 class="display-10 fw-bolder text-white">Found an item</h1>                                
+{% endblock titulo %}
+
+
+{% block contenido %}   
+<table class="table" class="display-10 fw-bolder text-white">
+    <thead class="display-10 fw-bolder text-white">
+        <tr>
+            <th>Id</th>
+            <th>When</th>
+            <th>What</th>
+        </tr>
+    </thead>
+    <tbody class="display-10 fw-bolder text-white">
+    {% for w in found  %}
+        <tr class="display-10 fw-bolder text-white">
+            <td>{{ w.id }}</td>
+            <td>{{ w.when }}</td>
+            <td>{{ w.what }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}
+    

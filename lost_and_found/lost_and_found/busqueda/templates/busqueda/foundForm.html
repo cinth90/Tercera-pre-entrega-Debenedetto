@@ -1,0 +1,19 @@
+{% extends "busqueda/index.html" %}
+
+
+{% block titulo %}
+<h1 class= "display-5 fw-bolder text-white">I Found an item</h1>                                
+{% endblock titulo %}
+
+
+{% block contenido %}   
+
+<form action="" method="post" class="display-10 fw-bolder text-white">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Save">
+</form>
+
+{% endblock contenido %}

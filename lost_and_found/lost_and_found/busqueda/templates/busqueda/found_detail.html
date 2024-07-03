@@ -1,0 +1,18 @@
+{% extends "busqueda/index.html" %}
+
+
+{% block titulo %}
+<h1 class="display-10 fw-bolder text-white">Found Item Detail</h1>                         
+{% endblock titulo %}
+
+
+{% block contenido %}   
+
+    <p class="text-white" style="text-align: left;"><strong>When:</strong> {{ found.when }}</p>
+    <p class="text-white" style="text-align: left;"><strong>What:</strong> {{ found.what }}</p>
+    <p class="text-white" style="text-align: left;"><strong>Where:</strong> {{ found.where }}</p>
+    <p class="text-white" style="text-align: left;"><strong>Color:</strong> {{ found.color }}</p>
+    <p class="text-white" style="text-align: left;"><strong>Model:</strong> {{ found.model }}</p>
+    <p class="text-white" style="text-align: left;"><strong>Size:</strong> {{ found.size }}</p>
+
+{% endblock contenido %}

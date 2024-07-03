@@ -1,0 +1,13 @@
+{% extends "busqueda/index.html" %}
+
+{% block titulo %}
+ <h1 class= "display-5 fw-bolder text-white">Founds</h1>
+{% endblock titulo %}
+
+{% block contenido %} 
+
+    {% for f in found %}
+        <li>{{f}}</li>
+    {% endfor %}
+
+{% endblock contenido %}
