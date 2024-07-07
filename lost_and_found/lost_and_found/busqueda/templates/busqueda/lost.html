@@ -2,25 +2,25 @@
 
 
 {% block titulo %}
-<h1 class="display-10 fw-bolder text-white">I lost an item</h1>                                
+<h1 class="display-10 fw-bolder text-white">Lost item detail</h1>                                
 {% endblock titulo %}
 
 
 {% block contenido %}   
 <table class="table" class="display-10 fw-bolder text-white">
-    <thead class="display-10 fw-bolder text-white"> 
-        <tr class="display-10 fw-bolder text-white">
+    <thead class="display-10 fw-bolder text-white">
+        <tr>
             <th>Id</th>
             <th>When</th>
             <th>What</th>
         </tr>
     </thead>
     <tbody class="display-10 fw-bolder text-white">
-    {% for l in lost  %}
-        <tr>
-            <td>{{ l.id }}</td>
-            <td>{{ l.when }}</td>
-            <td>{{ l.what }}</td>
+    {% for w in found  %}
+        <tr class="display-10 fw-bolder text-white">
+            <td>{{ w.id }}</td>
+            <td>{{ w.when }}</td>
+            <td>{{ w.what }}</td>
         </tr>
     {% endfor %}
     </tbody>

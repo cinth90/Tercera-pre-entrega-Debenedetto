@@ -26,8 +26,14 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'aboutme' %}">About me</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'testimonial_create' %}">Testimonial</a></li>
+                        {% if user.is_authenticated %}
+                        <p style="color:green"> [{{user.first_name}} {{user.last_name}}]</p>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Logout</button>
+                        </form>
+                        {% endif %}
+
                     </ul>
                 </div>
             </div>
@@ -36,21 +42,26 @@
         <header class="bg-dark py-5">
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="text-center my-5">
 
                             {% block titulo %}
                              <h1 class="display-5 fw-bolder text-white mb-2">Guests and staff can quickly and efficiently report lost items without needing assistance from resort staff, reducing workload and improving efficiency in handling lost and found items.</h1>
-                            <p class="lead text-white-50 mb-4">This website provide an intuitive interface for resort guests and staff to report lost items. It is straightforward and easy to navigate, which encourages users to submit accurate and complete information.</p>
+                            <p class="lead mb-4">This website offers an intuitive interface for resort guests and staff to report lost items. It is user-friendly and easy to navigate, encouraging users to provide accurate and comprehensive information.</p>
                             {% endblock titulo %}
 
                             {% block contenido %}
             
-                            
-
+                           
+                           {% if user.is_authenticated %}                 
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'lostForm' %}">I lost an item</a>
                                 <a class="btn btn-outline-light btn-lg px-4" href="{% url 'foundForm' %}">I found an item</a>
+                                
+                            {% else %}
+                            <a class="btn btn-primary" href= "{% url 'login' %}"> Login</a>
+                            <a class ="btn btn-primary" href= "{% url 'registro' %}">Sign up</a>
+                            {% endif %}
                             </div>
                         </div>
                     </div>
@@ -60,31 +71,31 @@
        
         <!-- Features section-->
         <section class="py-5 border-bottom" id="features">
-            <div class="container px-5 my-5">
-                <div class="row gx-5">
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                        <h2 class="h4 fw-bolder">Accessibility</h2>
-                        <p>Guest and staff can access the lost and found service from anywhere on the resort grounds, enhancing convenience and ensuring timely reporting of lost items.</p>
-                        <a class="text-decoration-none" href="#!">
-                            Learn more
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                        <h2 class="h4 fw-bolder">Efficiency</h2>
-                        <p>Resort staff can efficiently manage and track lost items, notify guests when items are found, and ensure a smooth retrieval process.</p>
-                        <a class="text-decoration-none" href="#!">
+            <div class="container">
+                <div class="row gx-4 gy-5">
+                    <div class="col-lg-4">
+                        <div class="feature-card bg-primary bg-gradient text-white rounded-3 p-4"><i class="bi bi-collection"></i></div>
+                        <h2 class="h5 mt-2 mb-3">Accessibility</h2>
+                        <p class="mb-4">Guest and staff can access the lost and found service from anywhere on the resort grounds, enhancing convenience and ensuring timely reporting of lost items.</p>
+                        <a class="btn btn-outline-light" href="#!">
                             Learn more
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
                     <div class="col-lg-4">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                        <h2 class="h4 fw-bolder">Better costumer experience</h2>
-                        <p>Guests feel reassured by the professionalism of the resort's lost and found service, enhancing their overall experience and satisfaction.</p>
-                        <a class="text-decoration-none" href="#!">
+                        <div class="feature-card bg-primary bg-gradient text-white rounded-3 p-4"><i class="bi bi-collection"></i></div>
+                        <h2 class="h5 mt-2 mb-3">Efficiency</h2>
+                        <p class="mb-4">Resort staff can efficiently manage and track lost items, notify guests when items are found, and ensure a smooth retrieval process.</p>
+                        <a class="btn btn-outline-light" href="#!">
+                            Learn more
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature-card bg-primary bg-gradient text-white rounded-3 p-4"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h5 mt-2 mb-3">Better costumer experience</h2>
+                        <p class="mb-4">Guests feel reassured by the professionalism of the resort's lost and found service, enhancing their overall experience and satisfaction.</p>
+                        <a class="btn btn-outline-light" href="#!">
                             Learn more
                             <i class="bi bi-arrow-right"></i>
                         </a>

@@ -8,12 +8,19 @@
 
 {% block contenido %}   
 
-<form action="" method="post" class="display-10 fw-bolder text-white">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Save">
-</form>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form action="" method="post" class="p-4 bg-primary bg-gradient rounded-3">
+                {% csrf_token %}
+                <table class="table table-bordered table-striped text-white">
+                    {{ form.as_table }}
+                </table>
+                <button type="submit" class="btn btn-light mt-3">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock contenido %}
