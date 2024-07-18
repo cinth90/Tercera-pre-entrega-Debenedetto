@@ -2,7 +2,9 @@
 
 
 {% block titulo %}
-<h1 class="display-10 fw-bolder text-white">Lost Item Detail</h1>                         
+<h1 class="display-10 fw-bolder text-white">Lost Item Detail</h1>
+<h2>Form has been complete successfully</h2>
+<h4>We will contact you if we find your item</h4>                         
 {% endblock titulo %}
 
 
@@ -14,6 +16,10 @@
     <p class="text-white" style="text-align: left;"><strong>Color:</strong> {{ lost.color }}</p>
     <p class="text-white" style="text-align: left;"><strong>Model:</strong> {{ lost.model }}</p>
     <p class="text-white" style="text-align: left;"><strong>Size:</strong> {{ lost.size }}</p>
+    <p class="text-white" style="text-align: left;"><strong>Description:</strong> {{ lost.description }}</p>
+    {% if found.photo %}
+    <img src="{{ found.photo.url }}" alt="Item Photo">
+    {% endif %}
 
 {% endblock contenido %}
 

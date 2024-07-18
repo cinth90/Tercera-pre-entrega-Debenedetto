@@ -5,17 +5,18 @@ from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
-   path('', home, name="home"),
-    path('ilost/', ilost, name="ilost"),
-    path('ifound/', ifound, name="ifound"),
-   #fomularios
-     path('lostForm/', lostForm, name="lostForm"), # URL para el formulario de perdido
-                                                    # URL para la vista de detalle del ítem perdido
+    path('', home, name="home"),
+  
+   #fomulario items perdidos
+    path('lostForm/', lostForm, name="lostForm"), # URL para el formulario de perdido
+    path('lost/<int:pk>/', lostDetail, name='lost_detail'),# URL para la vista de detalle del ítem perdido cargado
+    
+    #formulario items encontradis
     path('foundForm/', foundForm, name="foundForm"), # URL para el formulario de encontrado
     path('found/<int:pk>/', foundDetail, name='found_detail'),# URL para la vista de detalle del ítem encontrado
-    path('lost/<int:pk>/', lostDetail, name='lost_detail'),# URL para la vista de detalle del ítem perdido cargado
+    
   
-   #buscar
+   #buscar en la base de items encontrados
     path('buscarItem/', buscarItem, name="buscarItem"),
     path('encontrarItem/', encontrarItem, name="encontrarItem"),
     
@@ -28,12 +29,17 @@ urlpatterns = [
     
     #login/logout/ registracion
     path('login/', loginRequest, name='login'),
-    path('logout/', LogoutView.as_view(template_name='busqueda/logout.html'), name='logout'),
-    
+    path('logout/', LogoutView.as_view(template_name="busqueda/logout.html"), name="logout"),
     path('registro/', register, name='registro'),
     
+    #Edicion de perfil / Avatar
+    path('perfil/', editProfile, name='perfil'),
+    path('<int:pk>/password/',CambiarClave.as_view() , name='cambiarClave'),
+    path('agregar_avatar/', agregarAvatar, name='agregar_avatar'),
     
-
-   
+    #formulario de contacto
+    path('contactar/', contactar, name='contactar'),
+      
+       
     ]
 

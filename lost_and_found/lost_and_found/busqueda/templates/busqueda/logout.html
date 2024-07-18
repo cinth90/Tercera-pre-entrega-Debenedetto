@@ -1,12 +1,17 @@
 {% extends "busqueda/index.html" %}
 
+
 {% block titulo %}
-<h1 class="display-10 fw-bolder text-white">Logout</h1>                                
+<h1 class="mb-5">Logout</h1>                                
 {% endblock titulo %}
 
-{% block content %}
-    {% csrf_token %}
+
+{% block contenido %}   
+
 <h1>You have been logged out!</h1>
+
 <p>Thank you for using our app. You have been successfully logged out.</p>
+
 <a href="{% url 'login' %}">Click here to log in again</a>
-{% endblock content %}
+
+{% endblock contenido %}

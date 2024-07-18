@@ -6,13 +6,18 @@
 {% endblock titulo %}
 
 {% block contenido %} 
-    <h2>Testimonial Form</h2>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">submit</button>
-    </form>
-
-   
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form action="" method="post" class="p-4 bg-primary bg-gradient rounded-3">
+                    {% csrf_token %}
+                    <table class="table table-bordered table-striped text-white">
+                        {{ form.as_table }}
+                    </table>
+                    <button type="submit" class="btn btn-light mt-3">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
     {% endblock contenido %}

@@ -12,8 +12,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <form action="" method="post" class="p-4 bg-primary bg-gradient rounded-3">
+            <form action="" method="post" enctype="multipart/form-data" class="p-4 bg-primary bg-gradient rounded-3">
                 {% csrf_token %}
+                <script>
+                    $(function() {
+                        $("#id_when").datepicker({
+                            dateFormat: 'dd/mm/yy'
+                        });
+                    });
+                </script>
                 <table class="table table-bordered table-striped text-white">
                     {{ form.as_table }}
                 </table>
