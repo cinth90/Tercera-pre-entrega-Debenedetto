@@ -25,6 +25,9 @@ def lostForm(request):
     if request.method == "POST":
         miForm = LostForm(request.POST)
         if miForm.is_valid():
+            lost_name_booking = miForm.cleaned_data.get("name_booking")
+            lost_room_number = miForm.cleaned_data.get("room_number")
+            lost_email = miForm.cleaned_data.get("email")
             lost_when = miForm.cleaned_data.get("when")
             lost_what = miForm.cleaned_data.get("what")
             lost_where = miForm.cleaned_data.get("where")
@@ -33,7 +36,10 @@ def lostForm(request):
             lost_size = miForm.cleaned_data.get("size", "")
             lost_description = miForm.cleaned_data.get("description", "")
             lost_photo = miForm.cleaned_data.get("photo", "")
-            lost = Ilost(when =lost_when,
+            lost = Ilost(name_booking =lost_name_booking,
+                         room_number =lost_room_number,
+                         email =lost_email,
+                         when =lost_when,
                          what =lost_what,
                          where=lost_where,
                          color=lost_color,

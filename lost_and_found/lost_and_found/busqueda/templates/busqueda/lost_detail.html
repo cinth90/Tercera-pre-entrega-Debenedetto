@@ -10,15 +10,28 @@
 
 {% block contenido %}   
 
-    <p class="text-white" style="text-align: left;"><strong>When:</strong> {{ lost.when }}</p>
-    <p class="text-white" style="text-align: left;"><strong>What:</strong> {{ lost.what }}</p>
-    <p class="text-white" style="text-align: left;"><strong>Where:</strong> {{ lost.where }}</p>
-    <p class="text-white" style="text-align: left;"><strong>Color:</strong> {{ lost.color }}</p>
-    <p class="text-white" style="text-align: left;"><strong>Model:</strong> {{ lost.model }}</p>
-    <p class="text-white" style="text-align: left;"><strong>Size:</strong> {{ lost.size }}</p>
-    <p class="text-white" style="text-align: left;"><strong>Description:</strong> {{ lost.description }}</p>
-    {% if found.photo %}
-    <img src="{{ found.photo.url }}" alt="Item Photo">
+    <p class="text-white" style="text-align: left;"><strong>Name booking: </strong> {{ lost.name_booking }}</p>
+    <p class="text-white" style="text-align: left;"><strong>Room number: </strong> {{ lost.room_number }}</p>
+    <p class="text-white" style="text-align: left;"><strong>Email: </strong> {{ lost.email}}</p>
+    <p class="text-white" style="text-align: left;"><strong>When: </strong> {{ lost.when }}</p>
+    <p class="text-white" style="text-align: left;"><strong>What: </strong> {{ lost.what }}</p>
+    <p class="text-white" style="text-align: left;"><strong>Where: </strong> {{ lost.where }}</p>
+    {% if lost.color %}
+    <p class="text-white" style="text-align: left;"><strong>Color: </strong>{{ lost.color }}</p>
+    {% endif %}
+    
+    {% if lost.model %}
+    <p class="text-white" style="text-align: left;"><strong>Model: </strong>{{ lost.model }}</p>
+    {% endif %}
+    
+    {% if lost.size %}
+    <p class="text-white" style="text-align: left;"><strong>Size: </strong>{{ lost.size }}</p>
+    {% endif %}
+    
+    <p class="text-white" style="text-align: left;"><strong>Description: </strong>{{ lost.description }}</p>
+    
+    {% if lost.photo %}
+    <img src="{{ lost.photo.url }}" alt="Item Photo" class="img-fluid mt-3">
     {% endif %}
 
 {% endblock contenido %}

@@ -4,12 +4,20 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
+
 #Valida que la fecha no sea en el futuro
 def validate_past_date(value):
         if value > timezone.now().date():
             raise ValidationError(
             _('The date must be today or earlier')
         )
+#Valida que el numero de cuarto sea real
+def validate_four_digits(value):
+    if not (1101 <= value <= 3510):
+        raise ValidationError(
+            _('%(value)s room number not valid'),
+            params={'value': value},)
+
 
 #Modelo Ilost(objeto perdido)
 class Ilost(models.Model):
@@ -37,13 +45,15 @@ class Ilost(models.Model):
                      ("Tennis/Basquet court", "Tennis/Basquet court"),
                      ("I don't know", "I don't know"),
     ]
-        
+        name_booking = models.CharField(max_length=60, blank=False, null=False, default='')
+        room_number = models.IntegerField(validators=[validate_four_digits], blank=True, null=True)
+        email= models.EmailField(max_length=254, blank=False, null=False, default='')
         when = models.DateField(validators=[validate_past_date])
         what = models.CharField(max_length=60)
         where = models.CharField(max_length=60, choices=LOCATIONS, help_text="Select a place where you lost your item")
-        color = models.CharField(max_length=50)
-        model = models.CharField(max_length=60)
-        size = models.CharField(max_length=60)
+        color = models.CharField(max_length=50, blank=True, null=True)
+        model = models.CharField(max_length=60, blank=True, null=True)
+        size = models.CharField(max_length=60, blank=True, null=True)
         description = models.TextField(verbose_name="Description", help_text="Optional: Complete a short description of item", blank=True, null=True)
         photo = models.ImageField(upload_to='lost_photos/', blank=True, null=True, help_text='Opcional: load a photo of the item')
         returned_owner = models.BooleanField(default=False)

@@ -1,18 +1,26 @@
 from django import forms
 from .models import *
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 
-def clean_when(self):
-        when = self.cleaned_data.get('when')
+#Valida que la fecha no sea en el futuro
+def validate_past_date(value):
+        if value > timezone.now().date():
+            raise ValidationError(
+            _('The date must be today or earlier')
+        )
 
-        # Verificar si la fecha es anterior o igual a la fecha actual
-        if when > timezone.now().date():
-            raise ValidationError('The date must be today or earlier')
+    #Formulario para items perdidos
+def validate_four_digits(value):
+    if not (1101 <= value <= 3510):
+        raise ValidationError(
+            _('%(value)s room number not valid'),
+            params={'value': value},
+        )
 
-        return when
-    
 
 class LostForm(forms.Form):
     LOCATIONS = [("Lobby", "Lobby"),
@@ -37,7 +45,10 @@ class LostForm(forms.Form):
                  ("Rain forest walk", "Rain forest walk"),
                  ("Tennis/Basquet court", "Tennis/Basquet court"),
                  ("I don't know", "I don't know"),]
-    when = forms.DateField(input_formats=['%d/%m/%Y'],widget=forms.DateInput(format='%d/%m/%Y'), required=True, help_text='Format: dd/mm/aaaa', error_messages= {'required': 'Complete date'})
+    name_booking = forms.CharField(max_length=60)
+    room_number = forms.IntegerField(validators=[validate_four_digits])
+    email= forms.EmailField(max_length=254)
+    when = forms.DateField(validators=[validate_past_date], input_formats=['%d/%m/%Y'],widget=forms.DateInput(format='%d/%m/%Y'), required=True, help_text='Format: dd/mm/aaaa', error_messages= {'required': 'Complete date'})
     what = forms.CharField(max_length=20)
     where = forms.ChoiceField(choices=LOCATIONS, help_text='Select an option')
     color = forms.CharField(max_length=50, required=False, help_text='Optional: Complete color of item')
