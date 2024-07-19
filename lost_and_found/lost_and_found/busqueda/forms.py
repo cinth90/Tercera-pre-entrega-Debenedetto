@@ -97,19 +97,24 @@ class TestimonialForm(forms.ModelForm):
         model = Testimonial
         fields = ['firstName', 'lastName', 'city', 'testimonial']
         
-
-        
 class RegistroForm(UserCreationForm):
-    first_name = forms.CharField(max_length=60, min_length=3, required=True)
-    last_name = forms.CharField(max_length=60, min_length=3, required=True)
+    first_name = forms.CharField(max_length=60, required=True)
+    last_name = forms.CharField(max_length=60, required=True)
     email = forms.EmailField(required=True)
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(label= "Confirm password", widget=forms.PasswordInput)
-    
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput, help_text="Enter a strong password.")
+    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput, help_text="Enter the same password for confirmation.")
+
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2","first_name", "last_name"]
-        
+        fields = ['first_name', 'last_name','username', 'email', 'password1', 'password2']
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords do not match")
+        return password2
+            
 class UserEditForm(UserChangeForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(max_length=50, required=True)
@@ -119,14 +124,6 @@ class UserEditForm(UserChangeForm):
         model = User
         fields = ["email","first_name", "last_name"]
         
-class UserEditForm(UserChangeForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(max_length=50, required=True)
-    last_name = forms.CharField(max_length=50, required=True)
-    
-    class Meta:
-        model = User
-        fields = ["email","first_name", "last_name"]
         
 class AvatarForm(forms.Form):
     imagen = forms.ImageField(required= True)

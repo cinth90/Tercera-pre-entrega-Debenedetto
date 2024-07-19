@@ -173,12 +173,14 @@ def register(request):
         if miForm.is_valid():
             usuario = miForm.cleaned_data.get("username")
             miForm.save()
-            return redirect(reverse_lazy('home'))
+            return render(request, 'busqueda/singup_exito.html')  
+        else:
+            return render(request, "busqueda/registro.html", {"form": miForm})
     else:
         miForm = RegistroForm()
         
-        return render(request, "busqueda/registro.html", {"form": miForm})
-    
+        return render(request, "busqueda/registro.html", {"form": miForm})   
+
 # Edicion de perfil
 @login_required
 def editProfile(request):

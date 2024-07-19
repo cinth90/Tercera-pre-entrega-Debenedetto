@@ -1,0 +1,14 @@
+{% extends "busqueda/index.html" %}
+
+
+{% block titulo %}
+<h1 class="display-10 fw-bolder text-white">Registration Successful</h1>                                
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+  <h2>Your account has been created successfully. You can now log in.</h2>
+  <a class="btn btn-primary" href="{% url 'login' %}">Log in</a>
+
+{% endblock contenido %}
