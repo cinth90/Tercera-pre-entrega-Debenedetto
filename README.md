@@ -24,7 +24,7 @@ Funcionalidades
     JavaScript
 
 Uso
-
+video explicativo: https://youtu.be/7vMzy7wd4EY
 Una vez instalado el proyecto:
 
     Huéspedes:
