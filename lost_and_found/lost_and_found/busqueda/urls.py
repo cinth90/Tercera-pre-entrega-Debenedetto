@@ -6,6 +6,7 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', home, name="home"),
+    path('admin/', home, name="admin"),
   
    #fomulario items perdidos
     path('lostForm/', lostForm, name="lostForm"), # URL para el formulario de perdido

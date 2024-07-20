@@ -25,6 +25,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
                 <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'admin' %}">Staff Login</a>
                 {% if user.is_authenticated %}
                <a class="navbar-brand" href="{% url 'perfil' %}">Profile</a>
                     <h6 style="color:green">{{user.last_name}}</h6>
@@ -32,8 +33,8 @@
                     <div class="navbar-brand">
                         <a href= "{% url 'agregar_avatar'%}"><img src="{{request.session.avatar}}" height= "40px" weight="40px" alt="photo"></a>
                     </div>  
-                </form>
-                {% endif %}
+                    {% endif %}
+                                                          
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}">
@@ -88,35 +89,26 @@
                         <div class="feature-card bg-primary bg-gradient text-white rounded-3 p-4"><i class="bi bi-collection"></i></div>
                         <h2 class="h5 mt-2 mb-3">Accessibility</h2>
                         <p class="mb-4">Guest and staff can access the lost and found service from anywhere on the resort grounds, enhancing convenience and ensuring timely reporting of lost items.</p>
-                        <a class="btn btn-outline-light" href="#!">
-                            Learn more
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
+                    
                     </div>
                     <div class="col-lg-4">
                         <div class="feature-card bg-primary bg-gradient text-white rounded-3 p-4"><i class="bi bi-collection"></i></div>
                         <h2 class="h5 mt-2 mb-3">Efficiency</h2>
                         <p class="mb-4">Resort staff can efficiently manage and track lost items, notify guests when items are found, and ensure a smooth retrieval process.</p>
-                        <a class="btn btn-outline-light" href="#!">
-                            Learn more
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
+                 
                     </div>
                     <div class="col-lg-4">
                         <div class="feature-card bg-primary bg-gradient text-white rounded-3 p-4"><i class="bi bi-toggles2"></i></div>
                         <h2 class="h5 mt-2 mb-3">Better costumer experience</h2>
                         <p class="mb-4">Guests feel reassured by the professionalism of the resort's lost and found service, enhancing their overall experience and satisfaction.</p>
-                        <a class="btn btn-outline-light" href="#!">
-                            Learn more
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
+                     
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials section-->
-        <section class="py-5 border-bottom">
+        <section class="py-5 border-bottom" >
             <div class="container px-5 my-5 px-5">
                 <div class="text-center mb-5">
                     <h2 class="fw-bolder">Customer testimonials</h2>
@@ -126,7 +118,7 @@
                     <div class="col-lg-6">
                         <!-- Testimonial 1-->
                         <div class="card mb-4">
-                            <div class="card-body p-4">
+                            <div class="card-body p-4" style="background-color: #212529">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
                                     <div class="ms-4">
@@ -138,7 +130,7 @@
                         </div>
                         <!-- Testimonial 2-->
                         <div class="card">
-                            <div class="card-body p-4">
+                            <div class="card-body p-4" style="background-color: #212529">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
                                     <div class="ms-4">
@@ -154,9 +146,9 @@
         </section>
         {% endblock contenido %}
      <!-- Contact Section -->
-    <section id="contact" class="bg-light py-5">
-        <div class="container px-5 my-5 px-5">
-            <div class="text-center mb-5">
+    <section style="background-color: #212529">
+        <div>
+            <div class="text-center mb-5" >
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
                 <h2 class="fw-bolder">Get in touch</h2>
                 <p class="lead mb-0">We'd love to hear from you</p>

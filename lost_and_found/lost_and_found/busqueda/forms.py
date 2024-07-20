@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 
+
 #Valida que la fecha no sea en el futuro
 def validate_past_date(value):
         if value > timezone.now().date():
@@ -128,6 +129,7 @@ class UserEditForm(UserChangeForm):
 class AvatarForm(forms.Form):
     imagen = forms.ImageField(required= True)
        
+               
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact

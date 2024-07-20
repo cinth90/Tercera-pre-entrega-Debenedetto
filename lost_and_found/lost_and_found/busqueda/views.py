@@ -23,7 +23,7 @@ def aboutme(request):
 @login_required
 def lostForm(request):
     if request.method == "POST":
-        miForm = LostForm(request.POST)
+        miForm = LostForm(request.POST, request.FILES)
         if miForm.is_valid():
             lost_name_booking = miForm.cleaned_data.get("name_booking")
             lost_room_number = miForm.cleaned_data.get("room_number")
@@ -63,7 +63,8 @@ def lostDetail(request, pk):
 @login_required
 def foundForm(request):
     if request.method == "POST":
-        miForm = FoundForm(request.POST)
+        miForm = FoundForm(request.POST, request.FILES)
+
         if miForm.is_valid():
             found_when = miForm.cleaned_data.get("when")
             found_what = miForm.cleaned_data.get("what")

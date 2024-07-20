@@ -45,9 +45,9 @@ class Ilost(models.Model):
                      ("Tennis/Basquet court", "Tennis/Basquet court"),
                      ("I don't know", "I don't know"),
     ]
-        name_booking = models.CharField(max_length=60, blank=False, null=False, default='')
-        room_number = models.IntegerField(validators=[validate_four_digits], blank=True, null=True)
-        email= models.EmailField(max_length=254, blank=False, null=False, default='')
+        name_booking = models.CharField(max_length=60)
+        room_number = models.IntegerField(validators=[validate_four_digits])
+        email= models.EmailField(max_length=254)
         when = models.DateField(validators=[validate_past_date])
         what = models.CharField(max_length=60)
         where = models.CharField(max_length=60, choices=LOCATIONS, help_text="Select a place where you lost your item")
@@ -124,7 +124,9 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.firstName} {self.lastName} - {self.city}"
-   
+    class Meta:
+            verbose_name = "Testimonial"
+            ordering = ["firstName"]
 #Avatar
    
 class Avatar(models.Model):
@@ -143,3 +145,7 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+            verbose_name = "Contact"
+            ordering = ["name"]
+
